@@ -1,3 +1,4 @@
+package app;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -36,7 +37,7 @@ public class YoutubeAPIClient {
      * @return The transcript as a string, or an error message if failed
      */
     public String getTranscript(String videoID, String format, String language) {
-        ProcessBuilder pb = new ProcessBuilder("python", "get_transcript.py", videoID, format, language);
+        ProcessBuilder pb = new ProcessBuilder("python3", "get_transcript.py", videoID, format, language);
         pb.redirectErrorStream(true);
         StringBuilder output = new StringBuilder();
         try {
