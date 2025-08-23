@@ -2,7 +2,7 @@ import sys
 import requests
 import json
 
-API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
+API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
 
 def get_gemini_response(api_key, transcript, user_prompt=None):
     url = f"{API_URL}?key={api_key}"
@@ -23,7 +23,6 @@ def get_gemini_response(api_key, transcript, user_prompt=None):
             }
         ]
     }
-
     try:
         response = requests.post(url, headers=headers, data=json.dumps(data))
         response.raise_for_status()

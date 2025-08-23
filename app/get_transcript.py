@@ -32,6 +32,7 @@ language = sys.argv[3] if len(sys.argv) > 3 else "en"
 
 try:
     ytt_api = YouTubeTranscriptApi()
+    
     transcript = ytt_api.fetch(video_id, languages=[language])
     if output_format == "json":
         formatter = JSONFormatter()

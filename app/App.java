@@ -10,7 +10,15 @@ public class App {
         String videoID = args.length > 0 ? args[0] : "";
         String format = args.length > 1 ? args[1] : "custom"; // use custom for timestamped transcript
         String language = args.length > 2 ? args[2] : "en";
-        String userPrompt = args.length > 3 ? args[3] : null;
+        String userPrompt = null;
+        if (args.length > 3) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 3; i < args.length; i++) {
+                sb.append(args[i]).append(" ");
+            }
+            userPrompt = sb.toString().trim();
+        }
+        //String userPrompt = args.length > 3 ? args[3] : null;
         String geminiApiKey = "AIzaSyAjZyfLMucqZtRS-_rDUljofEKoa5b5QDo"; // Hardcoded API key
 
         // 1. Fetch transcript
@@ -29,9 +37,9 @@ public class App {
         try {
             ProcessBuilder pb;
             if (userPrompt != null) {
-                pb = new ProcessBuilder("python", "gemini_api_client.py", geminiApiKey, transcriptFile, userPrompt);
+                pb = new ProcessBuilder("python3", "gemini_api_client.py", geminiApiKey, transcriptFile, userPrompt);
             } else {
-                pb = new ProcessBuilder("python", "gemini_api_client.py", geminiApiKey, transcriptFile);
+                pb = new ProcessBuilder("python3", "gemini_api_client.py", geminiApiKey, transcriptFile);
             }
             pb.redirectErrorStream(true);
             Process process = pb.start();
